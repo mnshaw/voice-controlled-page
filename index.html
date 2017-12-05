@@ -166,9 +166,15 @@ $(document).ready(function() {
             }
             break;  
           case "delete":
-            console.log("handling delete");
-            $(textbox).val("");
-
+            if (istext) {
+              console.log("can delete");
+              $("#error").text("");
+              $(textbox).val("");
+            } else {
+              console.log("can't enter text");
+              $("#error").text("Please select the entry box first");
+            }
+            break;  
         }
       } else {
         $("#error").text("Can't recognize the command");
@@ -209,6 +215,7 @@ $(document).ready(function() {
     <li>Click {entry, cat, Google, CMU}</li>
     <li>Enter {what you want to enter into the text entry box}</li>
     <li>Scroll {up, down}</li>
+    <li>Delete</li>
   </ul>
 
   <img src="mtns.jpg" alt="Stormy mountains"></p>
