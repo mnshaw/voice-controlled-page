@@ -46,7 +46,7 @@ $(document).ready(function() {
     }
     console.log(command);
 
-    if (deviceResponse != "") {
+    if (command != "") {
       potentialcommand = command;
       $("#command").val() = potentialcommand;
     } 
@@ -98,6 +98,7 @@ $(document).ready(function() {
           var stringpieces = arg.split(/\s/);
 
           $("a,input,button").each(function() {
+            console.log($(this)[0]);
             if($(this)[0].tagName == "INPUT") {
               console.log("This is input");
               // look for the text in INPUT fields
