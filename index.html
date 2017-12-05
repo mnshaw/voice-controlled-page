@@ -124,13 +124,13 @@ $(document).ready(function() {
 
             break;
           case "scroll":
-            console.log("handling scroll", arg[1]);
+            console.log("handling scroll", arg);
 
-            if (arg[1] == "up") {
+            if (arg == "up") {
               $('html, body').animate({
                 scrollTop: $(document).scrollTop() + 150
               }, 1000);
-            } else if (arg[1] == "down") {
+            } else if (arg == "down") {
               $('html, body').animate({
                 scrollTop: $(document).scrollTop() - 150
               }, 1000);
