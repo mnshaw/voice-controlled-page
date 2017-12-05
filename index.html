@@ -116,7 +116,7 @@ $(document).ready(function() {
                 simulateClick(this);
 
                 if($(this)[0].tagName == "INPUT") {
-                  if (this.is("input[type='text'],textarea")) {
+                  if ($(this).is("input[type='text'],textarea")) {
                     console.log("is input box");
                     istext = true;
                     textbox = this;
