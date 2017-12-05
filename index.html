@@ -116,8 +116,13 @@ $(document).ready(function() {
                 simulateClick(this);
 
                 if($(this)[0].tagName == "INPUT") {
-                  istext = true;
-                  textbox = this;
+                  if (this.is("input[type='text'],textarea")) {
+                    console.log("is input box");
+                    istext = true;
+                    textbox = this;
+                  } else {
+                    istext = false;
+                  }
                 } else {
                   istext = false;
                 }
@@ -152,9 +157,11 @@ $(document).ready(function() {
             console.log("handling enter")
 
             if (istext) {
+              console.log("can enter text");
               $("#error").text("");
               $(textbox).val(arg);
             } else {
+              console.log("can't enter text");
               $("#error").text("Please select the entry box first");
             }
             break;            
