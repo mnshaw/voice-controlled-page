@@ -48,7 +48,7 @@ $(document).ready(function() {
 
     if (command != "") {
       potentialcommand = command;
-      $("#command").val() = potentialcommand;
+      $("#command").text(potentialcommand);
     } 
   };
 
@@ -135,9 +135,12 @@ $(document).ready(function() {
 
 </head>
   <body>
+    Command is:
+    <p id="command"></p>
     <p>
-      <input type="text" id="command"><input type="button" value="Do something!" id="commandbutton">
+      <input type="button" value="Click to say command" id="commandbutton">
     </p>
+    <input type="text" id="entry">
 
     <p>
     <input type="button" value="cat"><br>
