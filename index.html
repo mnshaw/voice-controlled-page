@@ -112,6 +112,7 @@ $(document).ready(function() {
 
               if (element.attr('id') == stringpieces[0]) {
                 clicked = true;
+                $("#error").text("");
                 simulateClick(this);
 
                 if($(this)[0].tagName == "INPUT") {
@@ -133,10 +134,12 @@ $(document).ready(function() {
             console.log("handling scroll", arg);
 
             if (arg == "up") {
+              $("#error").text("");
               $('html, body').animate({
                 scrollTop: $(document).scrollTop() - 150
               }, 1000);
             } else if (arg == "down") {
+              $("#error").text("");
               $('html, body').animate({
                 scrollTop: $(document).scrollTop() + 150
               }, 1000);
@@ -149,6 +152,7 @@ $(document).ready(function() {
             console.log("handling enter")
 
             if (istext) {
+              $("#error").text("");
               $(textbox).val(arg);
             } else {
               $("#error").text("Please select the entry box first");
