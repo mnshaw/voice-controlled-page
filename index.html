@@ -105,26 +105,18 @@ $(document).ready(function() {
             //console.log($("*:contains('" + arg + "')"));
 
             var stringpieces = arg.split(/\s/);
-            console.log("string pieces");
-            console.log(stringpieces);
 
             $("a,input,button").each(function() {
               var element = $(this);
-              console.log("element: ", element);
-              console.log(this);
-              if (element.attr('id') == stringpieces[0]) {
-                console.log("match!");
 
+              if (element.attr('id') == stringpieces[0]) {
                 simulateClick(this);
 
                 if($(this)[0].tagName == "INPUT") {
                   istext = true;
                   textbox = this;
-                  console.log("This is input");
-                  // look for the text in INPUT fields
                 } else {
                   istext = false;
-                  console.log("this is not input");
                 }
               }
               
@@ -132,7 +124,18 @@ $(document).ready(function() {
 
             break;
           case "scroll":
-            console.log("handling scroll`")
+            console.log("handling scroll")
+
+            if (result[1] == "up") {
+              $('html, body').animate({
+                scrollTop: $(document).scrollTop() + 150
+              }, 1000);
+            } else if (result[1] == "down") {
+              $('html, body').animate({
+                scrollTop: $(document).scrollTop() - 150
+              }, 1000);
+            }
+
             break;
           case "enter":
             console.log("handling enter")
@@ -145,13 +148,6 @@ $(document).ready(function() {
             console.log("sorry, that is not a recognized command")
         }
 
-
-      //console.log("Scroll " + result[1]);
-      //if(result[1]=="up") {
-        // scroll up
-      //} else if(result[1]=="down") {
-        // scroll down
-      //}
 
       }
 
@@ -168,6 +164,7 @@ $(document).ready(function() {
 
 </head>
   <body>
+    <h1>Simple voice controlled site</h1>
     Command is:
     <p id="command"></p>
     <p>
@@ -179,6 +176,16 @@ $(document).ready(function() {
     <input type="button" id="cat" value="cat"><p id="cattext"></p><br>
     <a href="https://www.google.com" id="Google" target="_blank">Google</a><br>
     <a href="https://cmu.edu" id="CMU" target="_blank">CMU</a><br>
+
+
+    <p>Possible Commands:</p>
+    <ul>
+      <li>Click {entry, cat, Google, CMU}</li>
+      <li>Enter {what you want to enter into the text entry box}</li>
+      <li>Scroll {up, down}</li>
+    </ul>
+
+    <img src="mtns.jpg" alt="Stormy mountains"></p>
 
   </body>
 </html>
