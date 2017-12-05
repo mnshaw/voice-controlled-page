@@ -145,6 +145,7 @@ $(document).ready(function() {
             }
             break;
           default:
+            $("#error").text("Can't recognize the command");
             console.log("sorry, that is not a recognized command")
         }
 
@@ -168,6 +169,7 @@ $(document).ready(function() {
   <h1>Simple voice controlled site</h1>
   Command is:
   <p id="command"></p>
+  <p id="error" style="color:red;"></p>
   <p>
     <input type="button" value="Click to say command" id="commandbutton">
   </p>
