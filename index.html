@@ -109,8 +109,9 @@ $(document).ready(function() {
             console.log(stringpieces);
 
             $("a,input,button").each(function() {
-              console.log($(this)[0]);
-              if ($(this)[0].attr('id') == stringpieces[0]) {
+              var element = $(this)[0];
+              console.log("element: ", element);
+              if (element.attr('id') == stringpieces[0]) {
                 console.log("match!");
 
                 simulateClick($(this)[0]);
