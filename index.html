@@ -61,7 +61,7 @@ $(document).ready(function() {
   };
 
   var istext = false;
-
+  var textbox = null;
 
   $("#commandbutton").click(function() {
     recognition.start();
@@ -119,6 +119,7 @@ $(document).ready(function() {
 
                 if($(this)[0].tagName == "INPUT") {
                   istext = true;
+                  textbox = this;
                   console.log("This is input");
                   // look for the text in INPUT fields
                 } else {
@@ -131,12 +132,14 @@ $(document).ready(function() {
 
             break;
           case "scroll":
-            // what do we do on scroll?
             console.log("handling scroll`")
             break;
           case "enter":
-            // what do we do on enter?
             console.log("handling enter")
+
+            if (istext) {
+              $(textbox).val(arg);
+            }
             break;
           default:
             console.log("sorry, that is not a recognized command")
@@ -156,6 +159,10 @@ $(document).ready(function() {
 
 
   })
+
+  $("#cat").click(function() {
+    $("#cattext").text("cat was clicked!");
+  })
 });
 </script>
 
@@ -169,7 +176,7 @@ $(document).ready(function() {
     <input type="text" id="entry">
 
     <p>
-    <input type="button" id="cat" value="cat"><br>
+    <input type="button" id="cat" value="cat"><p id="cattext"></p><br>
     <a href="https://www.google.com" id="Google" target="_blank">Google</a><br>
     <a href="https://cmu.edu" id="CMU" target="_blank">CMU</a><br>
 
