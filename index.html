@@ -91,6 +91,8 @@ $(document).ready(function() {
       var re = /^(click|scroll|enter|delete)\s(.*)/i;
       var result = re.exec(potentialcommand);
 
+      console.log("result", result);
+
       if (result) {
         var verb = result[1];
         var arg = result[2]
