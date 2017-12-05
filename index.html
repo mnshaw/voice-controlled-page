@@ -88,7 +88,7 @@ $(document).ready(function() {
       console.log("potentialcommand");
       console.log(potentialcommand);
 
-      var re = /^(click|scroll|enter)\s(.*)/i;
+      var re = /^(click|scroll|enter|delete)\s(.*)/i;
       var result = re.exec(potentialcommand);
 
       if (result) {
@@ -164,7 +164,11 @@ $(document).ready(function() {
               console.log("can't enter text");
               $("#error").text("Please select the entry box first");
             }
-            break;            
+            break;  
+          case "delete":
+            console.log("handling delete");
+            $(textbox).val("");
+
         }
       } else {
         $("#error").text("Can't recognize the command");
@@ -177,7 +181,7 @@ $(document).ready(function() {
   })
 
   $("#cat").click(function() {
-    $("#cattext").text("cat was clicked!");
+    $("#cattext").text("cat was clicked! The Entry box says: " + $("#entry").val());
   })
 });
 </script>
@@ -192,7 +196,7 @@ $(document).ready(function() {
   <p>
     <input type="button" value="Click to say command" id="commandbutton">
   </p>
-  <input type="text" id="entry">
+  Entry: <input type="text" id="entry">
 
   <p>
   <input type="button" id="cat" value="cat"><p id="cattext"></p><br>
