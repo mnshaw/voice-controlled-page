@@ -111,14 +111,15 @@ $(document).ready(function() {
             $("a,input,button").each(function() {
               var element = $(this);
               console.log("element: ", element);
+              console.log(this);
               if (element.attr('id') == stringpieces[0]) {
                 console.log("match!");
 
-                simulateClick($(this));
+                simulateClick(this);
 
                 if($(this)[0].tagName == "INPUT") {
-                istext = true;
-                console.log("This is input");
+                  istext = true;
+                  console.log("This is input");
                   // look for the text in INPUT fields
                 } else {
                   istext = false;
