@@ -99,6 +99,7 @@ $(document).ready(function() {
 
         switch(verb) {
           case "click":
+            var clicked = false;
             // what do we do if click?
             console.log("handling click")
 
@@ -110,6 +111,7 @@ $(document).ready(function() {
               var element = $(this);
 
               if (element.attr('id') == stringpieces[0]) {
+                clicked = true;
                 simulateClick(this);
 
                 if($(this)[0].tagName == "INPUT") {
@@ -121,6 +123,10 @@ $(document).ready(function() {
               }
               
             })
+
+            if (!clicked) {
+              $("#error").text("Can't recognize the command");
+            }
 
             break;
           case "scroll":
@@ -134,6 +140,8 @@ $(document).ready(function() {
               $('html, body').animate({
                 scrollTop: $(document).scrollTop() - 150
               }, 1000);
+            } else {
+              $("#error").text("Can't recognize the command");
             }
 
             break;
@@ -142,14 +150,14 @@ $(document).ready(function() {
 
             if (istext) {
               $(textbox).val(arg);
+            } else {
+              $("#error").text("Please select the entry box first");
             }
-            break;
-          default:
-            $("#error").text("Can't recognize the command");
-            console.log("sorry, that is not a recognized command")
+            break;            
         }
-
-
+      } else {
+        $("#error").text("Can't recognize the command");
+        console.log("sorry, that is not a recognized command");
       }
 
     };
