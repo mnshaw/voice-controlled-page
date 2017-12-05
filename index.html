@@ -73,6 +73,7 @@ $(document).ready(function() {
     };
   }
 
+  var istext = false;
 
   $("#commandbutton").click(function() {
     recognition.start();
@@ -96,15 +97,23 @@ $(document).ready(function() {
           //console.log($("*:contains('" + arg + "')"));
 
           var stringpieces = arg.split(/\s/);
-
+          console.log(stringpieces);
+          
           $("a,input,button").each(function() {
-            console.log($(this)[0]);
-            if($(this)[0].tagName == "INPUT") {
+            console.log($(this)[0].attr('id'));
+            if ($(this)[0].attr('id') == stringpieces[0]) {
+              console.log("match!");
+
+              if($(this)[0].tagName == "INPUT") {
+              istext = true;
               console.log("This is input");
-              // look for the text in INPUT fields
-            } else {
-              console.log("this is not input");
+                // look for the text in INPUT fields
+              } else {
+                istext = false;
+                console.log("this is not input");
+              }
             }
+            
           })
 
           break;
@@ -143,9 +152,9 @@ $(document).ready(function() {
     <input type="text" id="entry">
 
     <p>
-    <input type="button" value="cat"><br>
-    <a href="google.com">Google</a><br>
-    <a href="cmu.edu">CMU</a><br>
+    <input type="button" id="cat" value="cat"><br>
+    <a href="google.com" id="Google">Google</a><br>
+    <a href="cmu.edu" id="CMU">CMU</a><br>
 
   </body>
 </html>
