@@ -134,11 +134,11 @@ $(document).ready(function() {
 
             if (arg == "up") {
               $('html, body').animate({
-                scrollTop: $(document).scrollTop() + 150
+                scrollTop: $(document).scrollTop() - 150
               }, 1000);
             } else if (arg == "down") {
               $('html, body').animate({
-                scrollTop: $(document).scrollTop() - 150
+                scrollTop: $(document).scrollTop() + 150
               }, 1000);
             } else {
               $("#error").text("Can't recognize the command");
