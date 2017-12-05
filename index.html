@@ -10,7 +10,8 @@ var potentialcommand = "";
 
 $(document).ready(function() {
   try {
-    recognition = new SpeechRecognition();
+    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
     console.log("recognition exists");
   }
   catch(e) {
