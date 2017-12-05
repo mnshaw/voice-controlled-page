@@ -3,11 +3,78 @@
 <html>
 <head>
 <title>Example of Speech Recognition</title>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>
+
+var potentialcommand = "";
+
 $(document).ready(function() {
+  try {
+    recognition = new SpeechRecognition();
+    console.log("recognition exists");
+  }
+  catch(e) {
+    console.log("recognition doesn't exist");
+    // alert("Voice recognition is not supported");
+    alert(e);
+    console.error(e);
+    $('.no-browser-support').show();
+    $('.app').hide();
+  }
+
+  var command = "";
+
+  //-- NOTE: No use time on insertChat.
+  recognition.onresult = function(event) {
+    console.log("onresult");
+    // event is a SpeechRecognitionEvent object.
+    // It holds all the lines we have captured so far. 
+    // We only need the current one.
+    var current = event.resultIndex;
+
+    // Get a transcript of what was said.
+    var transcript = event.results[current][0].transcript;
+
+    // Add the current transcript to the contents of our Note.
+    // There is a weird bug on mobile, where everything is repeated twice.
+    // There is no official solution so far so we have to handle an edge case.
+    var mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
+
+    if(!mobileRepeatBug) {
+      command += transcript;
+    }
+    console.log(command);
+
+    if (deviceResponse != "") {
+      potentialcommand = command;
+      $("#command").val() = potentialcommand;
+    } 
+  };
+
+
+  recognition.onstart = function() { 
+    console.log("onstart");
+    // console.log('Voice recognition activated. Try speaking into the microphone.');
+  }
+
+  recognition.onspeechend = function() {
+    console.log("onspeechend");
+    
+    command = "";
+    // console.log('You were quiet for a while so voice recognition turned itself off.');
+  }
+
+  recognition.onerror = function(event) {
+    console.log("onerror")
+    alert(event.error);
+    if(event.error == 'no-speech') {
+      console.log('No speech was detected. Try again.');  
+    };
+  }
+
+
   $("#commandbutton").click(function() {
-    var potentialcommand = $("#command").val();
+    recognition.start();
 
     console.log(potentialcommand);
 
@@ -65,16 +132,15 @@ $(document).ready(function() {
 </script>
 
 </head>
-<body>
-<p>
-<input type="text" id="command"><input type="button" value="Do something!" id="commandbutton">
-</p>
+  <body>
+    <p>
+      <input type="text" id="command"><input type="button" value="Do something!" id="commandbutton">
+    </p>
 
-<p>
-<input type="button" value="cat"><br>
-<a href="google.com">Google</a><br>
-<a href="cmu.edu">CMU</a><br>
+    <p>
+    <input type="button" value="cat"><br>
+    <a href="google.com">Google</a><br>
+    <a href="cmu.edu">CMU</a><br>
 
-
-</body>
+  </body>
 </html>
